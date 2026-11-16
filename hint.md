@@ -1,6 +1,10 @@
-1. To keep things neat, create a path to the 'public' folder.
-2. Use a ternary to get the path to the file to serve (remember, a request to '/' is a request for index.html).
-3. Get the extension from path's extname() method.
-4. Use the extension to get the Content-Type from getContentType(). 
-5. Pass sendResponse() the correct content-contentType.
-6. Test.
+Iterate over the req. 
+For each chunk of streamed data, build up the body as a string.
+Remember to await each chunk!
+
+In a try catch, call JSON.parse on the body. 
+You can throw an error using the 'throw' and 'new' keywords:
+    throw new Error(`my error text`)
+
+
+
