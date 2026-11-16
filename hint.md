@@ -1,24 +1,13 @@
-// import EventEmitter
-import { EventEmitter } from 'node:events'
+You will need these, but with which header do they go with?
 
-const customerDetails = {
-  fullName: 'Meryl Sheep',
-  email: 'baah@thedevilwearswool.com',
-  phone: 12345678910
-}
+  "no-cache"
+  text/event-stream"
+  "keep-alive"
 
-// create the emitter
-const emailRequestEmitter = new EventEmitter()
+Here's an example string with an object, but you need to stringify the object!
 
-// define the listener function
-function generateEmail(customer) {
-  console.log(`Email generated for ${customer.email}`)
-}
+  `data: {
+    event: "new-update",
+    story: stories[randomIndex],
+  }\n\n`
 
-// register the listener
-emailRequestEmitter.on('emailRequest', generateEmail)
-
-// emit the event
-setTimeout(()=> {
-  emailRequestEmitter.emit('emailRequest', customerDetails)
-}, 2000)
