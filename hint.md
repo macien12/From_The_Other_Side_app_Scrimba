@@ -1,22 +1,24 @@
-Bring in the sanitize-html dependency
+// import EventEmitter
+import { EventEmitter } from 'node:events'
 
+const customerDetails = {
+  fullName: 'Meryl Sheep',
+  email: 'baah@thedevilwearswool.com',
+  phone: 12345678910
+}
 
-Set up a utility function to sanitize incoming data.
+// create the emitter
+const emailRequestEmitter = new EventEmitter()
 
+// define the listener function
+function generateEmail(customer) {
+  console.log(`Email generated for ${customer.email}`)
+}
 
-Our incoming data is an object.
+// register the listener
+emailRequestEmitter.on('emailRequest', generateEmail)
 
-
-Iterate over that object and sanitize any strings. Remember to allow the '<b>' tag.
-
-
-One way to iterate over an object:
-  for (const [key, value] of Object.entries(objName)) {
-   // do something here
-  }
-
-
-Our function should return the sanitized data.
-
-
-Probably best to call this function in handlePost()
+// emit the event
+setTimeout(()=> {
+  emailRequestEmitter.emit('emailRequest', customerDetails)
+}, 2000)
